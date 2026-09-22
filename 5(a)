@@ -1,0 +1,68 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyToggleApp());
+}
+
+class MyToggleApp extends StatelessWidget {
+  const MyToggleApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: ToggleScreen(),
+    );
+  }
+}
+
+class ToggleScreen extends StatefulWidget {
+  const ToggleScreen({super.key});
+
+  @override
+  State<ToggleScreen> createState() => _ToggleScreenState();
+}
+
+class _ToggleScreenState extends State<ToggleScreen> {
+  bool isOn = false;
+
+  void toggleSwitch(bool value) {
+    setState(() {
+      isOn = value;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Toggle Switch'),
+        backgroundColor: Colors.teal,
+        foregroundColor: Colors.white,
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Switch(
+              value: isOn,
+              onChanged: toggleSwitch,
+            ),
+            const SizedBox(height: 10),
+            Text(
+              isOn ? 'Switch is ON' : 'Switch is OFF',
+              style: const TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+
+
